@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        h1, h2, h3 {
+            text-align: center;
+        }
+        h1.song {
+            zoom: 150%;
+        }
+        body {
+            background-color: {{ song_color }};
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .next_song {
+            background-color: {{ nextsong_color }};
+            padding: 1em;
+        }
+        .percent {
+            border: thin solid black;
+            background-color: lightgray;
+            width: {{ percent }}%;
+        }
+    </style>
+    <script>
+        window.setTimeout('window.location.reload()', {{ refresh }}000)
+    </script>
+</head>
+<body>
+
+<h1 class="song">
+    {% if state == 'play' %}
+        &#9654;
+    {% elif state == 'stop' %}
+        &#9632;
+    {% elif state == 'pause' %}
+        &#x2161;
+    {% endif %}
+    {% if artist %}
+        {{ artist|truncate(20, "…") }} -
+    {% endif %}
+    {{ title|truncate(30, "…") }}
+</h1>
+<h3>
+    {% if song_played_time %}
+        {{ song_played_time }}
+    {% endif %}
+    {{ song_length }} (vol {{ volume }}%)</h3>
+<h2>{{album}}</h2>
+<br />
+<h3 class="percent">&nbsp;</h3>
+<h3 class="next_song">Nächster Song:
+    {% if next_song.artist %}
+        {{ next_song.artist }} -
+    {% endif %}
+    {{ next_song.title }}
+</h3>
+
+</body>
+</html>
