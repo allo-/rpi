@@ -1,0 +1,12 @@
+Example usage on the raspberry pi with the flask debugserver:
+- use .xinitrd to start a fullscreen midori browser
+- use cron to start the script after booting
+- use cron to start a X server after booting
+
+$ cat .xinitrd
+openbox &
+exec nice midori -e Fullscreen -a http://localhost:5000/
+
+$ crontab -l
+@reboot nohup /home/pi/rpi-infodisplay.py >/dev/null 2>/dev/null
+@reboot startx 2>/dev/null >/dev/null
