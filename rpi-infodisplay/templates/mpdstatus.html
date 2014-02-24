@@ -12,7 +12,11 @@
         }
         body {
             background-color: {{ song_color }};
+            {% if theme == "dark" %}
             color: #ffffff;
+            {% else %}
+            color: #000000;
+            {% endif %}
             overflow: hidden;
         }
         .next_song {

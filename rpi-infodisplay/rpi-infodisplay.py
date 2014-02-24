@@ -22,7 +22,7 @@ def name2color(name):
         if THEME == "dark":
             deccolor = int(int(md5[i:i+2], 16)/3.0 + 0)  # dark
         else:
-            deccolor = int(int(md5[i:i+2], 16)/3.0 + 80)  # light
+            deccolor = int(int(md5[i:i+2], 16)/3.0 + 100)  # light
         hexcolor = hex(deccolor)[2:]
         if len(hexcolor) == 1:
             hexcolor = "0"+hexcolor
@@ -53,6 +53,7 @@ def main():
 
     data = c.currentsong()
     data.update(c.status())
+    data['theme'] = THEME
     data['next_song'] = c.playlistid(data['nextsongid'])[0]
     if data['state'] == 'play':
         data['refresh'] = 2
