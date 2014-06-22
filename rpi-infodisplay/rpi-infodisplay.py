@@ -1,11 +1,12 @@
 #!/usr/bin/python
+# coding: utf-8
 
 from mpd import MPDClient, ConnectionError
 import os
 from flask import *
 import re
 import hashlib
-import time
+from time import sleep
 
 HOSTNAME = 'localhost'
 PORT = 6600
@@ -49,7 +50,7 @@ def main():
                 pass
         except IOError:
             pass
-        time.sleep(1)
+        sleep(1)
 
     data = c.currentsong()
     data.update(c.status())
