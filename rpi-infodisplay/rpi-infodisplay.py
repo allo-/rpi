@@ -94,6 +94,15 @@ def main():
     data['song_length'] = '{0:02d}:{1:02d}'.format(*divmod(time[1], 60))
     data['percent'] = \
         100 * time[0] / float(time[1]) if time[0] and time[1] else 0
+
+    data['title'] = unicode(data['title'], 'utf-8', errors='replace')
+    if 'artist'in data:
+        data['artist'] = unicode(data['artist'], 'utf-8', errors='replace')
+    if 'album'in data:
+        data['album'] = unicode(data['album'], 'utf-8', errors='replace')
+    data['next_song']['title'] = unicode(data['next_song']['title'], 'utf-8', errors='replace')
+    if 'artist'in data['next_song']:
+        data['next_song']['artist'] = unicode(data['next_song']['artist'], 'utf-8', errors='replace')
     return render_template("mpdstatus.html", **data)
 
 
