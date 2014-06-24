@@ -32,7 +32,9 @@ def name2color(name):
 
 
 def title_from_filename(filename):
-    matched_name = re.match('.*/(.*)\.[a-z0-9]*$', filename).group(1)
+    matched_name = None
+    match = re.match('.*/(.*)\.[a-z0-9]*$', filename)
+    matched_name = match.group(1)
     return matched_name if matched_name else filename
 
 
@@ -82,7 +84,7 @@ def main():
         else:
             data['nextsong_color'] = "#ffffff"
 
-    time = map(lambda x: int(x), data['time'].split(':'))
+    time = map(lambda x: int(x), data.get('time', '0:00').split(':'))
     if len(time) != 2:
         if len(time) == 0:
             time = [None, None]
